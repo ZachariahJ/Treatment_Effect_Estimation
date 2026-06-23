@@ -161,6 +161,7 @@ def MMD(C, t, K):
     Average MMD of each treatment group's C vs the rest. 
     C:(B,d) t:(B,) -> scalar
     """
+
     def rbf_mmd2(a, b, sigma=1.0):
         """RBF-kernel MMD^2: a:(n,d) b:(m,d) -> scalar"""
         def k(x, y):
