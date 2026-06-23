@@ -5,6 +5,48 @@ the input into a **stable** representation $S$ and a **confounding** representat
 downstream heads model propensity, outcomes, doubly-robust ITE targets, and a conditional
 diffusion model over $C$.
 
+## Getting Started
+
+### Requirements
+- Python 3.11+
+- Dependencies: `torch`, `numpy`, `pandas` (pinned in [requirements.txt](requirements.txt))
+- GPU optional — CUDA is used automatically if available, otherwise runs on CPU.
+
+### Installation
+```bash
+git clone <repo-url>
+cd Treatment_Effect
+
+# (recommended) create an isolated environment
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+### Run
+```bash
+python main.py
+```
+This runs the full pipeline end-to-end: data preprocessing → multi-stage training
+(representation → outcome → nuisances → ITE → diffusion denoiser) → inference on the
+test split. Trained weights are saved to `models/` and reused on later runs.
+
+To inspect the dataset summary without training:
+```bash
+python dataset.py
+```
+
+### Data
+The training data ([data_generated.csv](data_generated.csv)) is included in the repo, so
+no extra download is needed. To use your own data, point `data_preprocessing(csv_path=...)`
+in [dataset.py](dataset.py) at a CSV with the same schema.
+
+### Output
+Inference writes two files to `results/`:
+- `factual.csv` — factual predictions vs. observed outcomes (with MSE / RMSE printed)
+- `counterfactual.csv` — per-patient counterfactual predictions across treatments
+
 ## Shared notation
 
 | Symbol            | Code      | Meaning                                   |
