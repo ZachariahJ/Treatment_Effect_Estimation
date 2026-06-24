@@ -14,8 +14,8 @@ diffusion model over $C$.
 
 ### Installation
 ```bash
-git clone <repo-url>
-cd Treatment_Effect
+git clone https://github.com/ZachariahJ/Treatment_Effect_Estimation.git
+cd Treatment_Effect_Estimation
 
 # (recommended) create an isolated environment
 python -m venv .venv
